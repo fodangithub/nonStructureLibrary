@@ -359,7 +359,7 @@ struct Polygon {
     private static func createMeshTrianglesForConvexPolygon(_ polygon: Polygon) -> [(Int, Int, Int)] {
         // return a list of triangle point indexes (Mesh Faces) for given polygon
         var triangleArray: [(Int, Int, Int)] = []
-        return [(1,2,3)]
+        return [(8,9,0)] // not implemented yet
     }
 }
 
