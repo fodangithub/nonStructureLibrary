@@ -14,6 +14,7 @@ class nonStructureElement{
     }
 }
 
+typealias Brace = Beam
 class Beam: nonStructureElement, nonStructureFrameProtocol {
     var startPoint: Point3
     var endPoint: Point3
@@ -22,6 +23,12 @@ class Beam: nonStructureElement, nonStructureFrameProtocol {
     var materialDescription: String?
     var sectionType: SectionType
     var frameProperties: [Float]?
+    var length: Float { get{
+        if let len = _length { return len }
+        else { _length = startPoint.distanceTo(point: endPoint) }
+        return _length! }
+    }
+    var _length: Float?
     init(withID ID: Int, startPoint sp: Point3, endPoint ep: Point3, materialType mt: MaterialType, sectionType st: SectionType)
     {
         startPoint = sp

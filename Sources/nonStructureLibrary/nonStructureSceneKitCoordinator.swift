@@ -51,7 +51,11 @@ extension Beam: nonStructureSCNGeometryTransferrable {
     // add additional functions that is capable of directly transfer the SCNGeometry
     func getSCNGeometry(mode: generateMode) -> SCNGeometry? {
         if (mode == .lazy){
-            return self.sectionType.getSCNGeometryAsBoxLazy(frameProperty: self.frameProperties)
+            guard let box = self.sectionType.getSCNGeometryAsBoxLazy(frameProperty: self.frameProperties) else {
+                fatalError("box creation in lazy mode failed, element ID: \(self.id)")
+            }
+            box.width = CGFloat(self.length)
+            return box
         }
         return nil
     }
